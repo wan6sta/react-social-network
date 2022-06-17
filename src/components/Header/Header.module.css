@@ -1,0 +1,39 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.row {
+    display: flex;
+    height: 70px;
+
+    background-color: #414042;
+}
+
+.logoWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+
+    user-select: none;
+}
+
+.logoImg {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 25px;
+
+
+    width: 50px;
+    margin-right: 5px;
+}
+
+.logoWrapper p {
+    font-size: 22px;
+    font-weight: 800;
+    color: #F1F2F2;
+}

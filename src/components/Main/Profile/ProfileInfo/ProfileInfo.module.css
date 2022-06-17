@@ -1,0 +1,27 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    padding: 5px;
+    margin-bottom: 30px;
+
+    box-shadow: 2px 2px 8px 0px rgba(241, 242, 242, 0.2);
+}
+
+.ava {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+
+    border-radius: 50%;
+    user-select: none;
+}
+
+.avaDesc {
+    color: #F1F2F2;
+}
+
+.react {
+    font-weight: 500;
+    color: #00d8ff;
+}

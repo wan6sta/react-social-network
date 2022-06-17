@@ -1,0 +1,45 @@
+.nav {
+
+}
+
+.row {
+    padding: 10px 0;
+
+    background-color: #414042;
+
+    user-select: none;
+}
+
+.linkWrapper {
+    width: 250px;
+}
+
+.linkWrapper a {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    line-height: 30px;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #F1F2F2;
+
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.linkWrapper a:hover {
+    color: #414042;
+    background-color: #F1F2F2;
+}
+
+.linkWrapper a:focus {
+    font-weight: 600;
+}
+
+.linkWrapperSettings {
+    margin-top: 10px;
+}
+
+.active {
+    color: #00d8ff;
+}
