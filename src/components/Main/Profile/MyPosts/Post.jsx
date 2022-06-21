@@ -1,4 +1,4 @@
-import s from "./MyPosts.module.css";
+import s from "./MyPosts.module.scss";
 
 const Post = ({id, text, likes}) => {
   return <>
