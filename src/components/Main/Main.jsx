@@ -4,8 +4,6 @@ import Profile from './Profile/Profile';
 import Messages from "./Messages/Messages";
 import Void from "./Void";
 import {Routes, Route} from "react-router-dom";
-import store from "../../redux/store";
-
 
 const Main = ({store}) => {
   return <div className={s.main}>
