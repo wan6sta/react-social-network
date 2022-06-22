@@ -7,7 +7,7 @@ const Profile = ({store}) => {
   return <main className={s.content}>
     <div className={s.row}>
       <ProfileInfo />
-      <MyPosts store={store}/>
+      <MyPosts store={store} />
     </div>
   </main>
 };

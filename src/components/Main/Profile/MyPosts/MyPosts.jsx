@@ -1,5 +1,6 @@
 import s from './MyPosts.module.scss'
 import Post from "./Post";
+import {setPosts, setPostTextNow} from "../../../../redux/store";
 
 const MyPosts = ({store}) => {
 
@@ -14,12 +15,13 @@ const MyPosts = ({store}) => {
     <div className={s.createPost}>
       <input
         value={store.getState().postTextNow}
-        onChange={e => store.setPostTextNow(e.target.value)}
+        onChange={e => store.dispatch(setPostTextNow(e.target.value))}
         type='text'
-        placeholder='create new post'/>
+        placeholder='enter text'/>
 
       <button
-        onClick={() => store.setPosts()}>Post</button>
+        onClick={() => store.dispatch(setPosts())}>Post
+      </button>
     </div>
 
     <div className={s.posts}>

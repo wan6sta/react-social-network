@@ -7,9 +7,10 @@ import store from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export const render = () => {
+  console.log('перерисовка')
   root.render(
     <React.StrictMode>
-      <App store={store} />
+      <App store={store}/>
     </React.StrictMode>
   );
 }

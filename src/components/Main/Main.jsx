@@ -15,7 +15,7 @@ const Main = ({store}) => {
 
         <Routes>
           <Route path="/myprofile" element={<Profile store={store}/>}/>
-          <Route path="/messages" element={<Messages/>}/>
+          <Route path="/messages" element={<Messages store={store}/>}/>
 
           <Route path="/news" element={<Void/>}/>
           <Route path="/music" element={<Void/>}/>
