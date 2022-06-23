@@ -1,32 +1,17 @@
+import {combineReducers, legacy_createStore} from "redux";
+
 import {profileReducer} from "./profileReducer";
 import {messagesReducer} from "./messagesReducer";
+import usersReducer from "./usersReducer";
 
-const store = {
-  _state: {
-    profile: {
-      posts: [],
-      postTextNow: '',
-    },
-    messages: {
-      messages: [],
-      messageTextNow: '',
-    },
-  },
-  getState() {
-    return this._state;
-  },
+const reducers = combineReducers({
+  profileReducer,
+  messagesReducer,
+  usersReducer,
+})
 
-  _callSubscriber: null,
-  subscribe(observer) {
-    this._callSubscriber = observer;
-  },
+export const store = legacy_createStore(reducers);
 
-  dispatch(action) {
-    profileReducer(this._state.profile, action);
-    messagesReducer(this._state.messages, action);
 
-    this._callSubscriber();
-  },
-}
 
-export default store;
+

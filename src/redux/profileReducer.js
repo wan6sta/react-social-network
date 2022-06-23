@@ -1,28 +1,37 @@
-const SET_POSTS = 'SET_POSTS';
-const SET_POST_TEXT_NOW = 'SET_POST_TEXT_NOW';
+const SET_POSTS = 'SET_POSTS'
+const SET_POST_TEXT_NOW = 'SET_POST_TEXT_NOW'
 
-export const profileReducer = (state, action) => {
-  switch (action.type){
-    case SET_POSTS: {
-      state.posts.push({
-        id: 5,
-        text: state.postTextNow,
-        likes: 0,
-      })
-      state.postTextNow = '';
 
-      return state
-    }
+const initialState = {
+  posts: [],
+  postTextNow: '',
+}
 
-    case SET_POST_TEXT_NOW: {
-      return state.postTextNow = action.text;
-    }
+export const profileReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_POSTS:
+      return {
+        ...state,
+        posts: [...state.posts, {id: 3, text: state.postTextNow, likes: 13343423}],
+        postTextNow: ''
+      }
+
+    case SET_POST_TEXT_NOW:
+      return {
+        ...state,
+        postTextNow: action.text
+      }
 
     default: {
-      return state;
+      return state
     }
   }
 }
 
-export const setPosts = () => ({type: SET_POSTS})
-export const setPostTextNow = (text) => ({type: SET_POST_TEXT_NOW, text})
+export const setPosts = () => {
+  return {type: SET_POSTS}
+}
+
+export const setPostTextNow = (text) => {
+  return {type: SET_POST_TEXT_NOW, text}
+}

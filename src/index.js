@@ -3,18 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 
-import store from "./redux/store";
+import {store} from "./redux/store";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export const render = () => {
-  console.log('перерисовка')
-  root.render(
+root.render(
+  <Provider store={store}>
     <React.StrictMode>
-      <App store={store}/>
+      <App/>
     </React.StrictMode>
-  );
-}
+  </Provider>
+);
 
-render();
 
-store.subscribe(render);
+

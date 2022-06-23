@@ -1,10 +1,9 @@
 import s from './MyPosts.module.scss'
 import Post from "./Post";
-import {setPosts, setPostTextNow} from "../../../../redux/profileReducer";
 
-const MyPosts = ({store}) => {
+const MyPosts = ({posts, postTextNow, setPosts, setPostTextNow}) => {
 
-  const posts = store.getState().profile.posts.map(
+  const postsNew = posts.map(
     (post, id) => <Post
       key={id}
       id={post.id}
@@ -14,18 +13,16 @@ const MyPosts = ({store}) => {
   return <>
     <div className={s.createPost}>
       <input
-        value={store.getState().profile.postTextNow}
-        onChange={e => store.dispatch(setPostTextNow(e.target.value))}
+        value={postTextNow}
+        onChange={(e)=>setPostTextNow(e.target.value)}
         type='text'
         placeholder='enter text'/>
 
-      <button
-        onClick={() => store.dispatch(setPosts())}>Post
-      </button>
+      <button onClick={setPosts}>Post</button>
     </div>
 
     <div className={s.posts}>
-      {posts}
+      {postsNew}
     </div>
   </>
 };

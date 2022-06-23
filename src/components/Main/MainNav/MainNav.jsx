@@ -20,6 +20,11 @@ const MainNav = () => {
           }>Messages</NavLink>
         </div>
         <div className={s.linkWrapper}>
+          <NavLink to='/users' style={({ isActive }) =>
+            isActive ? {color: '#00d8ff'} : undefined
+          }>Users</NavLink>
+        </div>
+        <div className={s.linkWrapper}>
           <NavLink to='/music' style={({ isActive }) =>
             isActive ? {color: '#00d8ff'} : undefined
           }>Music</NavLink>

@@ -1,13 +1,14 @@
 import s from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPosts from "./MyPosts/MyPosts";
-import store from "../../../redux/store";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-const Profile = ({store}) => {
+
+
+const Profile = () => {
   return <main className={s.content}>
     <div className={s.row}>
       <ProfileInfo />
-      <MyPosts store={store} />
+      <MyPostsContainer />
     </div>
   </main>
 };

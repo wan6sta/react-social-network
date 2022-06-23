@@ -1,27 +1,28 @@
-const SET_MESSAGES = 'SET_MESSAGES';
-const SET_MESSAGE_TEXT_NOW = 'SET_MESSAGE_TEXT_NOW';
+const SET_MESSAGES = 'SET_MESSAGES'
+const SET_MESSAGE_TEXT_NOW = 'SET_MESSAGE_TEXT_NOW'
 
-export const messagesReducer = (state, action) => {
+const initialState = {
+  messages: [],
+  messageTextNow: '',
+}
+
+export const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MESSAGES: {
-      state.messages.push({
-        id: 5,
-        text: state.messageTextNow,
-      })
-      state.messageTextNow = '';
-
-      return state
+    case SET_MESSAGES:
+    return {
+      ...state,
+      messages: [...state.messages, {id: 2112, text: state.messageTextNow}],
+      messageTextNow: ''
     }
 
-    case SET_MESSAGE_TEXT_NOW: {
-      state.messageTextNow = action.text;
+    case SET_MESSAGE_TEXT_NOW:
+      return {
+        ...state,
+        messageTextNow: action.text
+      }
 
+    default:
       return state
-    }
-
-    default: {
-      return state
-    }
   }
 }
 
