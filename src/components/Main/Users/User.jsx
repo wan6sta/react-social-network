@@ -1,14 +1,19 @@
 import s from './Users.module.scss'
 import userIcon from '../../../assets/images/user.png'
+import {Link} from "react-router-dom";
 
-const User = ({id, name, desc, country, city, isFollow, imgUrl, follow, unfollow}) => {
+const User = ({id, name, desc, isFollow, imgUrl, follow, unfollow, profileId}) => {
+
+
   return <>
       <div className={s.user}>
         <div className={s.ImgWrapper}>
-          <img
-            src={imgUrl ? imgUrl : userIcon}
-            className={s.userIcon}
-            alt="userIcon"/>
+          <Link to={`../myprofile/${profileId}`}>
+            <img
+              src={imgUrl ? imgUrl : userIcon}
+              className={s.userIcon}
+              alt="userIcon"/>
+          </Link>
           {isFollow
             ? <button onClick={()=>unfollow(id)} className={s.userBtn}>Unfollow</button>
             : <button onClick={()=>follow(id)} className={s.userBtn}>Follow</button>
@@ -22,8 +27,8 @@ const User = ({id, name, desc, country, city, isFollow, imgUrl, follow, unfollow
           </div>
 
           <div className={s.userCardWrapper}>
-            <p className={s.userCardCountry}>{country}</p>
-            <p className={s.userCardCity}>{city}</p>
+            <p className={s.userCardCountry}></p>
+            <p className={s.userCardCity}></p>
           </div>
         </div>
       </div>

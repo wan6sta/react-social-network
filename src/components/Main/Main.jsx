@@ -13,7 +13,7 @@ const Main = () => {
       <div className={s.row}>
         <MainNav/>
         <Routes>
-          <Route path="/myprofile" element={<Profile />}/>
+          <Route path="/myprofile/:userid" element={<Profile />}/>
           <Route path="/messages" element={<MessagesContainer />}/>
           <Route path="/users" element={<UsersContainer />}/>
           <Route path="/news" element={<Void/>}/>

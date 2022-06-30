@@ -5,7 +5,7 @@ const MainNav = () => {
   return <nav className={s.nav}>
       <div className={s.row}>
         <div className={s.linkWrapper}>
-          <NavLink to='/myprofile' style={({ isActive }) =>
+          <NavLink to='/myprofile/2' style={({ isActive }) =>
             isActive ? {color: '#00d8ff'} : undefined
           }>My profile</NavLink>
         </div>

@@ -1,10 +1,11 @@
 const SET_POSTS = 'SET_POSTS'
 const SET_POST_TEXT_NOW = 'SET_POST_TEXT_NOW'
-
+const SET_PROFILE_INFO = 'SET_PROFILE_INFO'
 
 const initialState = {
   posts: [],
   postTextNow: '',
+  profileInfo: null
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -22,6 +23,12 @@ export const profileReducer = (state = initialState, action) => {
         postTextNow: action.text
       }
 
+    case SET_PROFILE_INFO:
+      return {
+        ...state,
+        profileInfo: action.payload
+      }
+
     default: {
       return state
     }
@@ -35,3 +42,5 @@ export const setPosts = () => {
 export const setPostTextNow = (text) => {
   return {type: SET_POST_TEXT_NOW, text}
 }
+
+export const setProfileInfo = (payload) => ({type: SET_PROFILE_INFO, payload})
