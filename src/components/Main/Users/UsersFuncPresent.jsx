@@ -30,7 +30,9 @@ const UsersFuncPresent =
       onClick={() => {
         setPageNumber(num)
         setIsLoading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${countPageUsers}&page=${num}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${countPageUsers}&page=${num}`, {
+          withCredentials: true
+        })
           .then(res => {
             setUsersList(res.data.items)
             setIsLoading(false)
@@ -45,7 +47,7 @@ const UsersFuncPresent =
     const users = usersList.map((user, id) => <User
       key={user.id}
 
-      profileId = {user.id}
+      profileId={user.id}
       id={id}
       name={user.name}
       desc={user.status}
@@ -59,9 +61,9 @@ const UsersFuncPresent =
     return <>
       {
         isLoading &&
-          <div className={s.loadingWrapper}>
-            <div className={s.loading}></div>
-          </div>
+        <div className={s.loadingWrapper}>
+          <div className={s.loading}></div>
+        </div>
       }
 
       <div className={s.users}>
