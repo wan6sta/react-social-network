@@ -1,31 +1,18 @@
 import s from './Header.module.scss'
-import {Link} from "react-router-dom";
 import icon from '../../assets/images/user.png'
+
+import {Link} from "react-router-dom";
 import {useEffect} from "react";
-import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {setUser} from "../../redux/authReducer";
+import {getUser} from "../../redux/authReducer";
+import axios from "axios";
 
 const Header = () => {
   const user = useSelector(state => state.authReducer)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const getProfile = async () => {
-      const authProfile = await axios.get(
-        'https://social-network.samuraijs.com/api/1.0/auth/me',
-        {withCredentials: true})
-
-      if (authProfile.data.resultCode === 0) {
-        const profile = await axios.get(
-          `https://social-network.samuraijs.com/api/1.0/profile/${authProfile.data.data.id}`)
-        dispatch(setUser(profile.data))
-      }
-    }
-
-    getProfile().then(res => {
-      console.log(res)
-    })
+    dispatch(getUser())
   }, [])
 
   return <header>
@@ -40,12 +27,12 @@ const Header = () => {
         <div className={s.myprofile}>
           {
             user.isLogin ? <div className={s.myprofile}>
-            <img src={
-              user.photos.small ? user.photos.small :
-              icon} alt="img"/>
-            <p>{user?.fullName}</p>
-          </div>
-          : <Link to={'login'}>Login</Link>
+                <img src={
+                  user.photos.small ? user.photos.small :
+                    icon} alt="img"/>
+                <p>{user?.fullName}</p>
+              </div>
+              : <Link to={'login'}>Login</Link>
           }
         </div>
       </div>

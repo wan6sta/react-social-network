@@ -1,22 +1,19 @@
 import React from 'react';
 import s from "./Users.module.scss";
-import axios from "axios";
 import User from "./User";
+import {setUnFollow} from "../../../redux/usersReducer";
 
 const UsersFuncPresent =
   ({
-     setNextPageNumber,
-     setPreviousPageNumber,
      countAllUsers,
      countPageUsers,
-     setPageNumber,
-     setUsersList,
      currentPage,
      usersList,
-     follow,
-     unfollow,
-     setIsLoading,
-     isLoading
+     isLoading,
+
+     getPage,
+     setFollow,
+     setUnFollow
    }) => {
 
     const pagination = [];
@@ -27,17 +24,7 @@ const UsersFuncPresent =
     }
 
     const paginationButtons = pagination.map(num => <button
-      onClick={() => {
-        setPageNumber(num)
-        setIsLoading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${countPageUsers}&page=${num}`, {
-          withCredentials: true
-        })
-          .then(res => {
-            setUsersList(res.data.items)
-            setIsLoading(false)
-          })
-      }}
+      onClick={() => getPage(num, countPageUsers)}
       className={num === currentPage
         ? s.pagBtn + ' ' + s.activeBtn
         : s.pagBtn
@@ -53,9 +40,9 @@ const UsersFuncPresent =
       desc={user.status}
       isFollow={user.followed}
       imgUrl={user.photos.small}
-
-      follow={follow}
-      unfollow={unfollow}
+      setFollow={setFollow}
+      setUnFollow={setUnFollow}
+      isLoading={isLoading}
     />)
 
     return <>
@@ -68,9 +55,7 @@ const UsersFuncPresent =
 
       <div className={s.users}>
         <div className={s.pagination}>
-          <button onClick={setPreviousPageNumber} className={s.previous}></button>
           {paginationButtons}
-          <button onClick={setNextPageNumber} className={s.next}></button>
         </div>
 
         {users}

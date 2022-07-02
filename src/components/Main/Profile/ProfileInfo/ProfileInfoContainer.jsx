@@ -1,6 +1,7 @@
 import ProfileInfo from "./ProfileInfo";
 import {connect} from "react-redux";
-import {setProfileInfo} from "../../../../redux/profileReducer";
+import {getProfile} from "../../../../redux/profileReducer";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -9,5 +10,5 @@ const mapStateToProps = (state) => {
 }
 
 export const ProfileInfoContainer = connect(mapStateToProps, {
-  setProfileInfo
+  getProfile
 })(ProfileInfo)

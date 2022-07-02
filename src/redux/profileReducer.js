@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const SET_POSTS = 'SET_POSTS'
 const SET_POST_TEXT_NOW = 'SET_POST_TEXT_NOW'
 const SET_PROFILE_INFO = 'SET_PROFILE_INFO'
@@ -44,3 +46,16 @@ export const setPostTextNow = (text) => {
 }
 
 export const setProfileInfo = (payload) => ({type: SET_PROFILE_INFO, payload})
+
+export const getProfile = (profileId) => (dispatch) => {
+  if (profileId) {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${profileId}`,{
+      withCredentials: true,
+      headers: {
+        "API-KEY": "4c455b41-e9e2-41e3-8498-c52fd2cfffdc"
+      }
+    }).then(res => {
+      dispatch(setProfileInfo({...res.data}))
+    })
+  }
+}

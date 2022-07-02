@@ -3,29 +3,7 @@ import userIcon from '../../../assets/images/user.png'
 import {Link} from "react-router-dom";
 import axios from "axios";
 
-const User = ({id, name, desc, isFollow, imgUrl, follow, unfollow, profileId}) => {
-  const followUser = (id) => {
-    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${profileId}`, {}, {
-      withCredentials: true,
-      headers: {
-        "API-KEY": "4c455b41-e9e2-41e3-8498-c52fd2cfffdc"
-      }
-    }).then(res => {
-      follow(id)
-    })
-  }
-
-  const unFollowUser = (id) => {
-    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${profileId}`, {
-      withCredentials: true,
-      headers: {
-        "API-KEY": "4c455b41-e9e2-41e3-8498-c52fd2cfffdc"
-      }
-    }).then(res => {
-      unfollow(id)
-    })
-  }
-
+const User = ({id, name, desc, isFollow, imgUrl, profileId, isLoading, setFollow, setUnFollow}) => {
   return <>
     <div className={s.user}>
       <div className={s.ImgWrapper}>
@@ -36,8 +14,8 @@ const User = ({id, name, desc, isFollow, imgUrl, follow, unfollow, profileId}) =
             alt="userIcon"/>
         </Link>
         {isFollow
-          ? <button onClick={() => unFollowUser(id)} className={s.userBtn}>Unfollow</button>
-          : <button onClick={() => followUser(id)} className={s.userBtn}>Follow</button>
+          ? <button disabled={isLoading} onClick={() => setUnFollow(profileId, id)} className={s.userBtn}>Unfollow</button>
+          : <button disabled={isLoading} onClick={() => setFollow(profileId, id)} className={s.userBtn}>Follow</button>
         }
       </div>
 

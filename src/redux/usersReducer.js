@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS_LIST = 'SET_USERS_LIST'
@@ -91,8 +93,60 @@ export const follow = (id) => ({type: FOLLOW, id})
 export const unfollow = (id) => ({type: UNFOLLOW, id})
 export const setUsersList = (users) => ({type: SET_USERS_LIST, users})
 export const setPageNumber = (id) => ({type: SET_PAGE_NUMBER, id})
-export const setPreviousPageNumber = () => ({type: SET_PREVIOUS_PAGE_NUMBER})
-export const setNextPageNumber = () => ({type: SET_NEXT_PAGE_NUMBER})
 export const setIsLoading = (payload) => ({type: SET_IS_LOADING, payload})
+
+
+export const getUsers = (countPageUsers, currentPage) => (dispatch) => {
+  dispatch(setIsLoading(true))
+  axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${countPageUsers}&page=${currentPage}`, {
+    withCredentials: true
+  }).then(res => {
+     dispatch(setUsersList(res.data.items))
+    dispatch(setIsLoading(false))
+  })
+}
+
+export const getPage = (num, countPageUsers) => (dispatch) => {
+  dispatch(setPageNumber(num))
+  dispatch(setIsLoading(true))
+
+  axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${countPageUsers}&page=${num}`, {
+    withCredentials: true
+  })
+    .then(res => {
+      dispatch(setUsersList(res.data.items))
+      dispatch(setIsLoading(false))
+    })
+}
+
+export const setFollow = (profileId, id) => (dispatch) => {
+  dispatch(setIsLoading(true))
+
+  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${profileId}`, {}, {
+    withCredentials: true,
+    headers: {
+      "API-KEY": "4c455b41-e9e2-41e3-8498-c52fd2cfffdc"
+    }
+  }).then(res => {
+    dispatch(setIsLoading(false))
+    dispatch(follow(id))
+  })
+}
+
+export const setUnFollow = (profileId, id) => (dispatch) => {
+  dispatch(setIsLoading(true))
+
+  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${profileId}`,  {
+    withCredentials: true,
+    headers: {
+      "API-KEY": "4c455b41-e9e2-41e3-8498-c52fd2cfffdc"
+    }
+  }).then(res => {
+    dispatch(setIsLoading(false))
+    dispatch(unfollow(id))
+  })
+}
+
+
 
 export default usersReducer
