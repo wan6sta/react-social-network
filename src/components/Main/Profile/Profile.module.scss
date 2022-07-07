@@ -1,0 +1,63 @@
+.content {
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.profileCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inputStatusWrap {
+    margin-bottom: 30px;
+    & p {
+        font-weight: 600;
+        width: 200px;
+    }
+    & button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        width: 200px;
+    }
+}
+
+
+.inputStatus {
+    padding: 5px;
+
+    box-shadow: 2px 2px 8px 0px rgba(241, 242, 242, 0.2);
+}
+
+.noStatus {
+    color: #b4b4b4;
+    font-weight: 400 !important;
+    user-select: none;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    &:hover {
+        color: rgba(180, 180, 180, 0.57);
+    }
+}
+
+.inputWrap {
+    display: flex;
+    width: 200px;
+}
+.status {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    & span {
+        font-size: 16px;
+    }
+}

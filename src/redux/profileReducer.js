@@ -3,11 +3,13 @@ import axios from "axios";
 const SET_POSTS = 'SET_POSTS'
 const SET_POST_TEXT_NOW = 'SET_POST_TEXT_NOW'
 const SET_PROFILE_INFO = 'SET_PROFILE_INFO'
+const SET_STATUS = 'SET_STATUS'
 
 const initialState = {
   posts: [],
   postTextNow: '',
-  profileInfo: null
+  profileInfo: null,
+  status: ''
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -31,6 +33,12 @@ export const profileReducer = (state = initialState, action) => {
         profileInfo: action.payload
       }
 
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.payload
+      }
+
     default: {
       return state
     }
@@ -45,6 +53,8 @@ export const setPostTextNow = (text) => {
   return {type: SET_POST_TEXT_NOW, text}
 }
 
+export const setStatus = (payload) => ({type: SET_STATUS, payload})
+
 export const setProfileInfo = (payload) => ({type: SET_PROFILE_INFO, payload})
 
 export const getProfile = (profileId) => (dispatch) => {
@@ -58,4 +68,12 @@ export const getProfile = (profileId) => (dispatch) => {
       dispatch(setProfileInfo({...res.data}))
     })
   }
+}
+
+export const getStatus = (userId) => (dispatch) => {
+  axios.get(`https://social-network.samuraijs.com/api/1.0/profile/status/${userId}`).then(
+    res => {
+      dispatch(setStatus(res.data))
+    }
+  )
 }

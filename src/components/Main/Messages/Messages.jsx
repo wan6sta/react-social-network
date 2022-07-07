@@ -1,12 +1,17 @@
 import s from './Messages.module.scss'
 import Message from "./Message";
+import {useSelector} from "react-redux";
+import {redirect} from "../../../hoc/redirect";
+import {Navigate} from "react-router-dom";
 
 const Messages = ({messages, messageTextNow, setMessages, setMessageTextNow}) => {
   const messagesNew = messages.map(
     (message, id) => <Message text={message.text} key={id}/>
   )
+  const isLogin = useSelector(state => state.authReducer.isLogin)
 
   return <>
+    {!isLogin && <Navigate to='/login'/>}
     <div className={s.messagePage}>
       <div className={s.form}>
         <input
@@ -26,4 +31,4 @@ const Messages = ({messages, messageTextNow, setMessages, setMessageTextNow}) =>
   </>
 };
 
-export default Messages;
+export default Messages

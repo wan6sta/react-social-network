@@ -6,6 +6,7 @@ import {UsersContainer} from "./Users/UsersContainer";
 import Void from "./Void";
 
 import {Routes, Route} from "react-router-dom";
+import Login from "./Login/Login";
 
 const Main = () => {
   return <div className={s.main}>
@@ -19,6 +20,7 @@ const Main = () => {
           <Route path="/news" element={<Void/>}/>
           <Route path="/music" element={<Void/>}/>
           <Route path="/settings" element={<Void/>}/>
+          <Route path="/login" element={<Login/>}/>
 
           <Route path="*" element={<Profile />}/>
         </Routes>
